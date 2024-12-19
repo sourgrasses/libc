@@ -2042,6 +2042,21 @@ extern "C" {
     ) -> c_int;
 
     pub fn getentropy(buf: *mut c_void, buflen: size_t) -> c_int;
+
+    pub fn strftime(
+        s: *mut c_char,
+        max: size_t,
+        format: *const c_char,
+        tm: *const crate::tm,
+    ) -> size_t;
+    pub fn strftime_l(
+        s: *mut c_char,
+        max: size_t,
+        format: *const c_char,
+        tm: *const crate::tm,
+        locale: crate::locale_t,
+    ) -> size_t;
+    pub fn strptime(s: *const c_char, format: *const c_char, tm: *mut crate::tm) -> *mut c_char;
 }
 
 #[link(name = "gnu")]
