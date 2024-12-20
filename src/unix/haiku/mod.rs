@@ -2057,6 +2057,8 @@ extern "C" {
         locale: crate::locale_t,
     ) -> size_t;
     pub fn strptime(s: *const c_char, format: *const c_char, tm: *mut crate::tm) -> *mut c_char;
+
+    pub fn mkostemp(template: *mut c_char, oflags: c_int) -> c_int;
 }
 
 #[link(name = "gnu")]
