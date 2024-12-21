@@ -819,7 +819,14 @@ pub const LC_NUMERIC: c_int = 4;
 pub const LC_TIME: c_int = 5;
 pub const LC_MESSAGES: c_int = 6;
 
-// FIXME(haiku): Haiku does not have MAP_FILE, but library/std/os.rs requires it
+pub const LC_COLLATE_MASK: c_int = 1 << (LC_COLLATE - 1);
+pub const LC_CTYPE_MASK: c_int = 1 << (LC_CTYPE - 1);
+pub const LC_MONETARY_MASK: c_int = 1 << (LC_MONETARY - 1);
+pub const LC_NUMERIC_MASK: c_int = 1 << (LC_NUMERIC - 1);
+pub const LC_TIME_MASK: c_int = 1 << (LC_TIME - 1);
+pub const LC_MESSAGES_MASK: c_int = 1 << (LC_MESSAGES - 1);
+
+// FIXME: Haiku does not have MAP_FILE, but library/std/os.rs requires it
 pub const MAP_FILE: c_int = 0x00;
 pub const MAP_SHARED: c_int = 0x01;
 pub const MAP_PRIVATE: c_int = 0x02;
@@ -2059,6 +2066,13 @@ extern "C" {
     pub fn strptime(s: *const c_char, format: *const c_char, tm: *mut crate::tm) -> *mut c_char;
 
     pub fn mkostemp(template: *mut c_char, oflags: c_int) -> c_int;
+
+    pub fn duplocale(l: crate::locale_t) -> crate::locale_t;
+    pub fn freelocale(l: crate::locale_t);
+    pub fn newlocale(category_mask: c_int, locale: *const c_char, base: crate::locale_t) -> crate::locale_t;
+    pub fn uselocale(newLoc: crate::locale_t) -> crate::locale_t;
+
+
 }
 
 #[link(name = "gnu")]
