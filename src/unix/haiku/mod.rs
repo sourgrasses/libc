@@ -2067,6 +2067,8 @@ extern "C" {
 
     pub fn mkostemp(template: *mut c_char, oflags: c_int) -> c_int;
 
+    pub fn pipe2(streams: *mut c_int, flags: c_int) -> c_int;
+
     pub fn duplocale(l: crate::locale_t) -> crate::locale_t;
     pub fn freelocale(l: crate::locale_t);
     pub fn newlocale(category_mask: c_int, locale: *const c_char, base: crate::locale_t) -> crate::locale_t;
